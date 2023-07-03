@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <a href="DashBoard.html"><h1>DashBoard</h1></a>
+<hr/>
+<div>
+    <div>
+        {% for val in values %}
+            <div>
+                <a href="{{ val.name }}"><h2>{{val.name }} -- {{ val.discription }}</h2></a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

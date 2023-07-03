@@ -1,0 +1,38 @@
+
+{#{% extends 'main.html' %}#}
+{#{% block content %}#}
+<style>
+    .service-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+</style>
+
+    <h1>Hello Customer World </h1>
+        <h2>Customer html</h2>
+    <div class="service-container">
+        <div>
+            <h3>Browse Topics</h3>
+            <hr>
+        </div>
+
+        <div>
+            <a href="{% url 'create_Service' %}" ><h1>Craete Service</h1></a>
+            <hr>
+            {% for val in service %}
+                    <div>
+                        <a href="{% url 'update_service' val.id %}" ><h1>Edit</h1></a>
+                        <a href="{% url 'delete_service' val.id %}" ><h1>Delete</h1></a>
+                        <span>{{ val.host }}</span>
+                        <h2>{{val.id }} -- <a href="{% url 'coading' val.id %}"> --{{ val.Service_name }}--{{ val.qty }}--{{ val.price }} </a></h2>
+                        <small>{{ val.topic}}</small>
+                    </div>
+                <hr/>
+            {% endfor %}
+
+        </div>
+    </div>
+
+        {#{% endblock content %}#}
+

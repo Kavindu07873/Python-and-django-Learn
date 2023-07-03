@@ -1,0 +1,156 @@
+
+
+{% extends 'main.html' %}
+{% block content %}
+    <h1>Hello Customer World </h1>
+        <h2>Customer html</h2>
+{% endblock %}
+<main>
+    <div class="container overflow-hidden text-center"  style="z-index: 6;position: absolute">
+        <div class="row gx-5" style="z-index: 4">
+            <div class="col">
+                <div class="p-3" style="z-index: 4">
+
+                    <p style="z-index: 4" class="fw-bold fs-3 text-danger">Date: <span id="datetime1"></span></p>
+
+                    <script>
+                        var dt = new Date();
+                        document.getElementById("datetime1").innerHTML = dt.toLocaleDateString();
+                    </script>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3">
+                    <p class="fw-bold fs-4 text-danger">Time: <span id="datetime"></span></p>
+
+                    <script>
+                        var dt = new Date();
+                        document.getElementById("datetime").innerHTML = dt.toLocaleTimeString();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <section>
+        <h1 class="bg-success p-2 text-white bg-opacity-75">Car Details</h1>
+    </section>
+    <br>
+
+    <br>
+
+    <section>
+        <form id="CarForm" class="was-validated">
+
+            <div class="row">
+
+<!--                <div class="col">-->
+<!--                    <label for="txtCarID">Car_Id</label>-->
+<!--                    <input type="text" class="form-control is-invalid" id="txtCarID" placeholder=""-->
+<!--                           name="cId"-->
+<!--                           aria-label="cId" required>-->
+<!--                </div>-->
+                <div class="col">
+                    <label for="txtUser">Car_Id</label>
+                    <input type="text" class="form-control is-invalid" id="txtUser" placeholder=""
+                           name="carId"
+                           aria-label="carId" required>
+                </div>
+
+                <div class="col">
+                    <label for="txtVersion">Version</label>
+                    <input type="text" class="form-control is-invalid" id="txtVersion" placeholder=""
+                           name="version"
+                           aria-label="version" required>
+                </div>
+                <div class="col">
+                    <label for="txtType">Type</label>
+                    <input type="text" class="form-control is-invalid" id="txtType" placeholder=""
+                           name="type"
+                           aria-label="type" required>
+                </div>
+                <div class="col">
+                    <label for="txtFuel">Fuel_type</label>
+                    <input type="text" id="txtFuel" class="is-invalid form-control d-inline-block"
+                           placeholder=""
+                           name="fuel"
+                           aria-label="Fuel" required>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+
+                <div class="col">
+                    <label for="txtPassengers">Passengers</label>
+                    <input type="text" class="form-control is-invalid" id="txtPassengers" placeholder=""
+                           name="passengers"
+                           aria-label="Passengers" required>
+                </div>
+                <div class="col">
+                    <label for="txtTransmission">Transmission</label>
+                    <input type="text" class="form-control is-invalid" id="txtTransmission" placeholder=""
+                           name="transmission"
+                           aria-label="Transmission" required>
+                </div>
+                <div class="col">
+                    <label for="txtColour">Colour</label>
+                    <input type="color" id="txtColour" class="is-invalid form-control d-inline-block"
+                           placeholder=""
+                           name="colour"
+                           aria-label="Colour" required>
+                </div>
+
+            </div>
+
+            <br>
+            <div class="row">
+
+                <div class="col">
+                    <label for="txtRent_duration">Rent_duration</label>
+                    <input type="text" class="is-invalid form-control" id="txtRent_duration" placeholder=""
+                           name="rent_duration"
+                           aria-label="Rent_duration" required>
+                </div>
+
+                <div class="col">
+                    <label for="txtAmount">No Of Car</label>
+                    <input type="text" id="txtAmount" class="is-invalid form-control"
+                           placeholder=""
+                           name="amount" aria-label="Amount" required>
+                </div>
+
+
+
+                <div class="col">
+                    <label for="txtPrice">Price</label>
+                    <input type="text" id="txtPrice" class="is-invalid form-control"
+                           placeholder=""
+                           name="price" aria-label="Price" required>
+                </div>
+                <div class="col">
+                    <label for="txtPrice_ExtraKm">Price_ExtraKm</label>
+                    <input type="text" id="txtPrice_ExtraKm" class="is-invalid form-control"
+                           placeholder=""
+                           name="price_ExtraKm" aria-label="Price_ExtraKm" required>
+                </div>
+
+            </div>
+        </form>
+        <br><br>
+        <button type="button" id="SaveCar" class="btn btn-primary">Save</button>
+        <!--        <button type="button" class="btn btn-secondary">Remove</button>-->
+        <button type="button" id="BtnUpdate" class="btn btn-success">Update</button>
+        <button type="button" id="BtnDelete" class="btn btn-danger">Delete</button>
+        <button type="button" id="BtnClearAll" class="btn btn-warning">Clearall</button>
+        <button type="button" id="btnLoadAll" class="btn btn-info">getall</button>
+
+
+    </section>
+    <br>
+    <br>
+</main>

@@ -1,0 +1,14 @@
+
+<h1>Service Form </h1>
+<hr>
+{% block content %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{    form.as_p   }}
+            <br>
+            <input type="submit" value="submit"/>
+            <br>
+        </form>
+    </div>
+{% endblock content %}
