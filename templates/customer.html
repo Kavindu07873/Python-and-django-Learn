@@ -15,6 +15,10 @@
         <div>
             <h3>Browse Topics</h3>
             <hr>
+                <form method="GET" action="{% url 'customer' %}">
+                    <input type="text" name="q" placeholder="Search All .."/>
+                </form>
+            <hr>
 
                 <div>
                     <a href="{% url 'customer' %}"><h2>All</h2></a>

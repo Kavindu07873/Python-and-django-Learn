@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from  django.db.models import Q
 from django.http import  HttpResponse
 from . import models
 from . import models
@@ -13,7 +14,13 @@ from .forms import ServiceForm
 
 def customer(request):
     q = request.GET.get('q')if request.GET.get('q') != None else ''
-    service = Service.objects.filter(topic__name__icontains=q)
+    # service = Service.objects.filter(topic__name__icontains=q)
+    service = Service.objects.filter(
+        Q(topic__name__icontains=q) |
+        Q(Service_name__icontains =q) |
+        Q(qty__icontains =q)|
+        Q(price__icontains =q)
+    )
     topic = Topic.objects.all()
     context = {'service': service , 'topics':topic}
     return render(request, 'customer.html',context)
