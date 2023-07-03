@@ -3,7 +3,7 @@ from django.http import  HttpResponse
 from . import models
 from . import models
 # Create your views here.
-from .models import Service
+from .models import Service ,Topic
 from .forms import ServiceForm
 
 # service = [{'id':1 ,'Name':'name' },
@@ -12,8 +12,10 @@ from .forms import ServiceForm
 
 
 def customer(request):
-    service = Service.objects.all()
-    context = {'service': service}
+    q = request.GET.get('q')if request.GET.get('q') != None else ''
+    service = Service.objects.filter(topic__name__icontains=q)
+    topic = Topic.objects.all()
+    context = {'service': service , 'topics':topic}
     return render(request, 'customer.html',context)
 
 
