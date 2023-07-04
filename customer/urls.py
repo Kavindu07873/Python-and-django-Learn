@@ -22,6 +22,7 @@ urlpatterns = [
 
 
     path('login/',views.loginPage, name='login'),
+    path('rejister/',views.registerUser, name='rejister'),
     path('logout/',views.logoutUser, name='logout'),
 
     path('customer/<str:pk>/',views.coading, name='coading'),

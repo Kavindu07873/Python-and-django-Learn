@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.http import  HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 from . import models
 from . import models
 from .models import Service ,Topic
@@ -19,6 +20,10 @@ from django.contrib import messages
 #            ]
 
 def loginPage(request):
+    page = 'login'
+    if request.user.is_authenticated:
+        return redirect('customer')
+
     if request.method == 'POST':
         username= request.POST.get('username')
         password = request.POST.get('password')
@@ -34,7 +39,7 @@ def loginPage(request):
             return redirect('customer')
         else:
             messages.error(request , 'Username or Password does not exit')
-    context = {}
+    context = {'page': page}
     return  render(request,'Login.html' ,context)
 
 
@@ -43,6 +48,21 @@ def logoutUser(request):
     logout(request)
     return redirect('customer')
 
+
+def registerUser(request):
+    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request , user)
+            return redirect('customer')
+        else:
+            messages.error(request,'An error occured during registration')
+
+    return render(request , 'Login.html',{'form':form})
 
 
 def customer(request):

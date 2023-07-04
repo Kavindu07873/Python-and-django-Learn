@@ -11,6 +11,7 @@
 
     <h1>Hello Customer World </h1>
     <h2>Customer html</h2>
+    <p>Hello I am {{ request.user }}</p>
     {% if request.user.is_authenticated %}
             <a href="{% url 'logout'%}"><h1>LogOut</h1></a>
     {% else %}
