@@ -7,7 +7,7 @@ from django.http import  HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from . import models
 from . import models
-from .models import Service ,Topic
+from .models import Service ,Topic ,Message
 from .forms import ServiceForm
 from django.contrib import messages
 
@@ -83,7 +83,15 @@ def customer(request):
 def coading(request,pk):
     print(pk)
     serve = Service.objects.get(id=pk)
-    context= {'service': serve}
+    serve_message =serve.message_set.all().order_by('-create')
+    if request.method == 'POST':
+        message = Message.objects.create(
+            user = request.user,
+            service = serve,
+            body = request.POST.get('Msgbody')
+        )
+        return redirect('coading' , pk = serve.id)
+    context= {'service': serve ,'serve_message':serve_message}
     return render(request, 'Coading.html',context)
 
 @login_required(login_url ='login')

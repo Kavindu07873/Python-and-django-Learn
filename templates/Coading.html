@@ -5,10 +5,45 @@
     <title>Coading</title>
 </head>
 <body>
+<div class="service-container">
+    <div>
+
                 <hr/>
                     <div>
-                        <h1>{{ service.Service_name }}</h1>
+                        <h1>Service Name = {{ service.Service_name }}</h1>
+                        <h1>Service topic ={{ service.topic }}</h1>
+                        <h1>Service host ={{ service.host }}</h1>
+
                     </div>
                 <hr/>
+
+
+        <div class="commernt-wrapper">
+            <h3>Conversation</h3>
+            {% for message in serve_message %}
+                <div>
+                    <small>@ {{ message.user }}  {{ message.create | timesince }}  ago</small>
+                    <p>{{ message.body }}</p>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
+
+    {% if request.user.is_authenticated %}
+    <div class="comment-form">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="text" name="Msgbody" placeholder="Write your message here...">
+        </form>
+    </div>
+    {% endif %}
+    </div>
+    <div>
+       <h1>Patr</h1>
+    </div>
+</div>
+
+
+
 </body>
 </html>
