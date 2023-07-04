@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path,include
 from  . import  views
 urlpatterns = [
+
     path('customer/',views.customer, name='customer'),
+    path('login/',views.loginPage, name='login'),
     path('customer/<str:pk>/',views.coading, name='coading'),
     path('create_Service/',views.createService, name='create_Service'),
     path('update_service/<str:pk>/',views.updateService, name='update_service'),

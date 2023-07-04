@@ -1,0 +1,18 @@
+
+<a href=" {% url 'customer' %}"><h1>Login Form</h1></a></a>
+<hr>
+{% block content %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{    form.as_p   }}
+            <br>
+            <label>User Name</label>
+            <input type="text" name="username" placeholder="Enter UserName"/>
+            <label>PassWord</label>
+            <input type="password" name="password" placeholder="Enter Password"/>
+
+            <input type="submit" value="login"/>
+        </form>
+    </div>
+{% endblock content %}

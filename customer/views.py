@@ -11,6 +11,11 @@ from .forms import ServiceForm
 #            {'id':2 ,'Name':'kamala'}
 #            ]
 
+def loginPage(request):
+    context = {}
+    return  render(request,'Login.html',context)
+
+
 
 def customer(request):
     q = request.GET.get('q')if request.GET.get('q') != None else ''
@@ -22,7 +27,8 @@ def customer(request):
         Q(price__icontains =q)
     )
     topic = Topic.objects.all()
-    context = {'service': service , 'topics':topic}
+    service_count = service.count()
+    context = {'service': service , 'topics':topic , 'service_count':service_count}
     return render(request, 'customer.html',context)
 
 

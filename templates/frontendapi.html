@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Hello Fornt End Rest Api Frame Work</h1>
+    <hr>
+    <div id="frontEndViwer">
+
+    </div>
+
+</body>
+<script>
+    let  frontEndViwer = document.getElementById('frontEndViwer')
+    let getService =async () =>{
+        let response =await fetch('http://127.0.0.1:8000/api/service/')
+        let services = await  response.json()
+        for (let i =0;services.length > i; i++){
+            let serve = services[i]
+
+            let row = `<div>
+                          <h3> ${serve.id} : ${serve.Service_name}</h3>
+
+                       </div>`
+        frontEndViwer.innerHTML += row
+        }
+    }
+getService()
+</script>
+</html>
