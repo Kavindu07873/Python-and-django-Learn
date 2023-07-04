@@ -1,19 +1,47 @@
 from django.shortcuts import render,redirect
 from  django.db.models import Q
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.http import  HttpResponse
 from . import models
 from . import models
-# Create your views here.
 from .models import Service ,Topic
 from .forms import ServiceForm
+from django.contrib import messages
+
+
+# Create your views here.
+
 
 # service = [{'id':1 ,'Name':'name' },
 #            {'id':2 ,'Name':'kamala'}
 #            ]
 
 def loginPage(request):
+    if request.method == 'POST':
+        username= request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(username = username)
+        except:
+            messages.error(request, "Admin Or Password incorrect.")
+        user = authenticate(request , username = username ,password = password)
+
+        if user is not None:
+            login(request , user)
+            return redirect('customer')
+        else:
+            messages.error(request , 'Username or Password does not exit')
     context = {}
-    return  render(request,'Login.html',context)
+    return  render(request,'Login.html' ,context)
+
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('customer')
 
 
 
@@ -38,7 +66,7 @@ def coading(request,pk):
     context= {'service': serve}
     return render(request, 'Coading.html',context)
 
-
+@login_required(login_url ='login')
 def createService(request):
     form = ServiceForm()
     if request.method =='POST':
@@ -51,9 +79,15 @@ def createService(request):
     return render(request, 'CustomerForm.html' , context)
 
 
+
+@login_required(login_url ='login')
 def updateService(request,pk):
    serve = Service.objects.get(id=pk)
    form = ServiceForm(instance=serve)
+   print(serve.host)
+   if request.user != serve.host:
+       return HttpResponse('Your are not allowed here !! ')
+
    if request.method == 'POST':
        form = ServiceForm(request.POST , instance=serve)
        if form.is_valid():
@@ -64,8 +98,12 @@ def updateService(request,pk):
 
 
 
+# @login_required(login_required ='login')
+@login_required(login_url ='login')
 def deleteService(request,pk):
     serve = Service.objects.get(id = pk)
+    if request.user != serve.host:
+        return HttpResponse('Your are not allowed here !! ')
     if request.method=='POST':
         serve.delete()
         return redirect('customer')
