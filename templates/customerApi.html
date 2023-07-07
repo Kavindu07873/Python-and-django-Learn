@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomerForm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body style="width: 1524px">
+<header>
+    <!--  //logo-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!--      <a class="navbar-brand" href="#">-->
+            <!--        <img src="../Assets/dKP.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
+            <!--        Dkp-Product  </a>-->
+        </div>
+        <!--/links-->
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <!--          <a href="../DashBord.html" class="nav-link active" aria-current="page" href="#">Home</a>-->
+                    <a class="nav-link active" aria-current="page" href="#">Orders</a>
+                    <a class="nav-link active" aria-current="page" href="#">Items</a>
+                    <a class="nav-link active" aria-current="page" href="#">Customers</a>
+
+                </div>
+            </div>
+            <!--  Search-->
+        </div>
+
+        <div class="container-fluid">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+
+<main>
+    <section>
+        <h1 class="bg-success p-2 text-white bg-opacity-75">Customer Details</h1>
+    </section>
+    <br>
+    <section>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary bg-danger float-end" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+            Add New Customer
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Customers</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="ID" aria-label="ID">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="ContNo" aria-label="ContNo">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Address" aria-label="Address">
+                            </div>
+
+                        </div>
+
+                        <br>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <br>
+
+    <section>
+        <form id="customerForm" class="was-validated">
+
+            <div class="row">
+
+                <div class="col">
+                    <label for="txtCustomerName">Customer Name</label>
+                    <input type="text" class="form-control is-invalid" id="txtCustomerName" placeholder="20000.00" name="name"
+                           aria-label="Name" required>
+                </div>
+                <div class="col">
+                    <label for="txtCustomerAddress">Customer Address</label>
+                    <input type="text" id="txtCustomerAddress" class="is-invalid form-control d-inline-block"
+                           placeholder="yapagewaththa"
+                           name="address" aria-label="Address" required>
+                </div>
+                <div class="col">
+                    <label for="txtCustomerEmail">Customer Email</label>
+                    <input type="text" class="form-control is-invalid" id="txtCustomerEmail" placeholder="Galle" name="email"
+                           aria-label="Email" required>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label for="txtCustomerCon">Customer ConNo</label>
+                    <input type="text" class="is-invalid form-control" id="txtCustomerCon" placeholder="+9411111111" name="conNo"
+                           aria-label="ConNo" required>
+                </div>
+
+                <div class="col">
+                    <label for="txtCustomerNic">Customer Nic</label>
+                    <input type="text" class="is-invalid form-control" id="txtCustomerNic" placeholder="20000.00" name="nic"
+                           aria-label="Nic" required>
+                </div>
+                <div class="col">
+                    <label for="txtCustomerPassword">Customer Password</label>
+                    <input type="text" id="txtCustomerPassword" class="is-invalid form-control" placeholder="+940771530632"
+                           name="password" aria-label="Password" required>
+                </div>
+            </div>
+        </form>
+        <br><br>
+        <button type="button" id="SaveCustomer" class="btn btn-primary">Save</button>
+<!--        <button type="button" class="btn btn-secondary">Remove</button>-->
+        <button type="button" id="BtnUpdate" class="btn btn-success">Update</button>
+        <button type="button" id="BtnDelete" class="btn btn-danger">Delete</button>
+        <button type="button" id="BtnClearAll" class="btn btn-warning">Clearall</button>
+        <button type="button" id="btnLoadAll" class="btn btn-info">getall</button>
+
+
+    </section>
+    <br>
+    <br>
+    <section>
+        <table style="width: 95%" border="2px solid red"
+               class="col table table-bordered border-primary table-dark table-striped">
+            <thead class="bg-danger text-white">
+            <tr>
+                <th >Id</th>
+                <th >Name</th>
+                <th>Address</th>
+                <th >Email</th>
+                <th >Contact</th>
+                <th >Password</th>
+                <th >Nic</th>
+
+            </tr>
+            </thead>
+            <tbody id="tblCustomer">
+
+            </tbody>
+        </table>
+
+    </section>
+</main>
+
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery-3.6.1.min.js"></script>
+
+
+<script>
+    $("#BtnClearAll").click(function () {
+        setTextFieldValues();
+        // $("#txtCustomerNic").refresh();
+
+    });
+
+    let baseURL = "http://127.0.0.1:8000/api/createCustomer/";
+
+    getAll();
+
+    $("#SaveCustomer").click(function () {
+
+        var formData = $("#customerForm").serialize();
+        console.log(formData);
+        $.ajax({
+            url: baseURL + "Customer/",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (res) {
+                alert(res.message);
+                getAll();
+            },
+            error: function (error) {
+                var jsObject = JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
+    });
+
+    $("#btnLoadAll").click(function () {
+        getAll()
+    });
+
+
+
+    //update value
+    $("#BtnUpdate").click(function () {
+
+
+        let customerName = $("#txtCustomerName").val();
+        let customerAddress = $("#txtCustomerAddress").val();
+        let customerEmail = $("#txtCustomerEmail").val();
+        let customerContact = $("#txtCustomerCon").val();
+        let customerPassword = $("#txtCustomerPassword").val();
+        let customerNic = $("#txtCustomerNic").val();
+
+
+        var customer = {
+
+            name: customerName,
+            address: customerAddress,
+            email : customerEmail,
+            conNo:customerContact,
+            password:customerPassword,
+            nic:customerNic
+        }
+
+        $.ajax({
+            url: baseURL+4,
+            method: 'put',
+            contentType:"application/json",
+            data:JSON.stringify(customer),
+            dataType:"json",
+            success: function (res) {
+                alert(res.message);
+
+            },
+            error:function (error){
+                let cause= JSON.parse(error.responseText).message;
+                alert(cause);
+            }
+
+        });
+    });
+
+    //Delete Value
+    $("#BtnDelete").click(function () {
+
+        let id = $("#txtCustomerID").val();
+        $.ajax({
+            url: baseURL+"Customer?id=" + id + "",
+            method: "delete",
+            dataType:"json",
+            success: function (resp) {
+                alert(resp.message);
+                getAll();
+            },
+            error:function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
+
+
+    function getAll() {
+        $("#tblCustomer").empty();
+
+        $.ajax({
+            url: baseURL +"Customer",
+            dataType: "json",
+            success: function (resp) {
+                for (let cus of resp.data) {
+                    var row = '<tr><td>' + cus.id + '</td><td>' + cus.name + '</td><td>' + cus.address + '</td><td>' + cus.email + '</td><td>' + cus.conno + '</td><td>' + cus.nic + '</td><td>' + cus.password + '</td></tr>';
+                    $("#tblCustomer").append(row);
+                }
+                EventBindingvalue();
+                setTextFieldValues("", "", "", "", "", "", "");
+                $("#txtCustomerID").focus();
+            }
+        });
+    }
+
+
+    function setTextFieldValues(id, Name, Address, Email, conno, Nic, Password) {
+        $("#txtCustomerID").val(id);
+        $("#txtCustomerName").val(Name);
+        $("#txtCustomerAddress").val(Address);
+        $("#txtCustomerEmail").val(Email);
+        $("#txtCustomerCon").val(conno);
+        $("#txtCustomerPassword").val(Password);
+        $("#txtCustomerNic").val(Nic);
+    }
+
+    //  mehidi table eka click karama data print we
+    function EventBindingvalue() {
+        $("#tblCustomer>tr").click(function () {
+
+            let id = $(this).children(":eq(0)").text();
+            let Name = $(this).children(":eq(1)").text();
+            let Address = $(this).children(":eq(2)").text();
+            let Email = $(this).children(":eq(3)").text();
+            let conno = $(this).children(":eq(4)").text();
+            let Password = $(this).children(":eq(5)").text();
+            let Nic = $(this).children(":eq(6)").text();
+
+            //  tble eke textfild walata data add karanawa
+            $("#txtCustomerID").val(id);
+            $("#txtCustomerName").val(Name);
+            $("#txtCustomerAddress").val(Address);
+            $("#txtCustomerEmail").val(Email);
+            $("#txtCustomerCon").val(conno);
+            $("#txtCustomerPassword").val(Password);
+            $("#txtCustomerNic").val(Nic);
+
+        });
+
+        // //double click remove table colom
+        // $("#tblCustomer>tr").on('dblclick', function () {
+        //     $(this).remove();
+        // });
+
+    }
+
+    // //Enter Button use for textfield
+    // $("#txtCustomerID").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         $("#txtCustomerName").focus();
+    //     }
+    //
+    // });
+    //
+    // $("#txtCustomerName").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         $("#txtCustomerContNo").focus();
+    //     }
+    //
+    // });
+    //
+    // $("#txtCustomerContNo").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         $("#txtCustomerAddress").focus();
+    //     }
+    //
+    // });
+
+    // $("#txtCustomerAddress").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         $("#txtCustomerSalary").focus();
+    //     }
+    //
+    // });
+    //
+    // $("#txtCustomerSalary").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         confirm("Do You Want To Add This Customer...?")
+    //         $("#SaveCustomer").focus();
+    //     }
+    //
+    // });
+
+    // Tap Button Remove
+    // $("#txtCustomerID,#txtCustomerName,#txtCustomerCon,#txtCustomerAddress,#txtCustomerSalary").on('keydown', function (event) {
+    //
+    //     if (event.key == "Tab") {
+    //         event.preventDefault();
+    //     }
+    // });
+
+
+</script>
+</body>
+</html>

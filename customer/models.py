@@ -15,6 +15,8 @@ class Service(models.Model):
     host =models.ForeignKey(User, on_delete=models.SET_NULL , null=True)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL , null=True)
     Service_name = models.CharField(max_length=255)
+    participants = models.ManyToManyField(User ,related_name='participant'
+                                          ,blank=True)
     qty = models.IntegerField()
     price = models.FloatField()
     updated = models.DateTimeField(auto_now=True)
@@ -33,6 +35,18 @@ class CustomerDetails(models.Model):
     updated =models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
+# class CustomerApi(models.Model):
+#     name = models.CharField(max_length=255)
+#     address = models.TextField()
+#     conNo = models.IntegerField()
+#     nic = models.IntegerField()
+#     paasword = models.TextField()
+#     updated =models.DateTimeField(auto_now=True)
+#     created = models.DateTimeField(auto_now_add=True)
+#     def __unicode__(self):
+#         return '{}'.format(self.address)
+#
+
 
 
 
@@ -47,5 +61,24 @@ class Message(models.Model):
         return self.body[0:50]
 
 
+# models.py
+# from django.db import models
+class CustomerValues(models.Model):
+    name = models.CharField(max_length=255)
+    address = models.TextField()
+    email = models.EmailField(max_length=100, unique=True, default='xample@example.com')
+    conNo = models.IntegerField()
+    nic = models.IntegerField()
+    password = models.TextField()
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return '{}'.format(self.address)
 
 
+class YourModel(models.Model):
+    # Define your fields here
+    field1 = models.CharField(max_length=100)
+    field2 = models.IntegerField()
+    # Add other fields as needed

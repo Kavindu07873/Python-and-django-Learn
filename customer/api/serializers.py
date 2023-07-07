@@ -1,8 +1,12 @@
+# serializers.py
 from rest_framework.serializers import ModelSerializer
-from customer.models import Service
+from customer.models import CustomerValues
 
 
-class ServiceSerializer(ModelSerializer):
+
+
+class CustomerSerializer(ModelSerializer):
     class Meta:
-        model = Service
+        model = CustomerValues
         fields = '__all__'
+

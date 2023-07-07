@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Coading</title>
+    <style>
+        .service-container{
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+        }
+    </style>
 </head>
 <body>
 <div class="service-container">
@@ -39,7 +45,15 @@
     {% endif %}
     </div>
     <div>
-       <h1>Patr</h1>
+       <h1>Participent</h1>
+        <hr>
+
+        {% for user in participant %}
+            <div>
+            <p>@ {{ user.username }}</p>
+            </div>
+
+        {% endfor %}
     </div>
 </div>
 

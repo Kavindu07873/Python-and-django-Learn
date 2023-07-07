@@ -84,14 +84,18 @@ def coading(request,pk):
     print(pk)
     serve = Service.objects.get(id=pk)
     serve_message =serve.message_set.all().order_by('-create')
+    participant = serve.participants.all()
     if request.method == 'POST':
         message = Message.objects.create(
             user = request.user,
             service = serve,
             body = request.POST.get('Msgbody')
         )
+        # msg ekak dammama add venawa chat field ekata
+        serve.participants.add(request.user)
         return redirect('coading' , pk = serve.id)
-    context= {'service': serve ,'serve_message':serve_message}
+    context= {'service': serve ,'serve_message':serve_message
+              ,'participant':participant}
     return render(request, 'Coading.html',context)
 
 @login_required(login_url ='login')

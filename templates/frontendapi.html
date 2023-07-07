@@ -16,7 +16,9 @@
     let  frontEndViwer = document.getElementById('frontEndViwer')
     let getService =async () =>{
         let response =await fetch('http://127.0.0.1:8000/api/service/')
+        console.log(response)
         let services = await  response.json()
+        console.log(services)
         for (let i =0;services.length > i; i++){
             let serve = services[i]
 
