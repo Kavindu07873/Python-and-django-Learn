@@ -104,13 +104,20 @@
     <br>
 
     <section>
+        <div class="col-4">
+            <label for="txtCustomerID">Customer ID</label>
+            <input type="number" id="txtCustomerID" class="form-control d-inline-block is-invalid"
+                   name="id"
+                   aria-label="ID" >
+        </div>
         <form id="customerForm" class="was-validated">
 
             <div class="row">
 
                 <div class="col">
                     <label for="txtCustomerName">Customer Name</label>
-                    <input type="text" class="form-control is-invalid" id="txtCustomerName" placeholder="20000.00" name="name"
+                    <input type="text" class="form-control is-invalid" id="txtCustomerName" placeholder="20000.00"
+                           name="name"
                            aria-label="Name" required>
                 </div>
                 <div class="col">
@@ -121,7 +128,8 @@
                 </div>
                 <div class="col">
                     <label for="txtCustomerEmail">Customer Email</label>
-                    <input type="text" class="form-control is-invalid" id="txtCustomerEmail" placeholder="Galle" name="email"
+                    <input type="text" class="form-control is-invalid" id="txtCustomerEmail" placeholder="Galle"
+                           name="email"
                            aria-label="Email" required>
                 </div>
             </div>
@@ -130,25 +138,28 @@
             <div class="row">
                 <div class="col">
                     <label for="txtCustomerCon">Customer ConNo</label>
-                    <input type="text" class="is-invalid form-control" id="txtCustomerCon" placeholder="+9411111111" name="conNo"
+                    <input type="text" class="is-invalid form-control" id="txtCustomerCon" placeholder="+9411111111"
+                           name="conNo"
                            aria-label="ConNo" required>
                 </div>
 
                 <div class="col">
                     <label for="txtCustomerNic">Customer Nic</label>
-                    <input type="text" class="is-invalid form-control" id="txtCustomerNic" placeholder="20000.00" name="nic"
+                    <input type="text" class="is-invalid form-control" id="txtCustomerNic" placeholder="20000.00"
+                           name="nic"
                            aria-label="Nic" required>
                 </div>
                 <div class="col">
                     <label for="txtCustomerPassword">Customer Password</label>
-                    <input type="text" id="txtCustomerPassword" class="is-invalid form-control" placeholder="+940771530632"
+                    <input type="text" id="txtCustomerPassword" class="is-invalid form-control"
+                           placeholder="+940771530632"
                            name="password" aria-label="Password" required>
                 </div>
             </div>
         </form>
         <br><br>
         <button type="button" id="SaveCustomer" class="btn btn-primary">Save</button>
-<!--        <button type="button" class="btn btn-secondary">Remove</button>-->
+        <!--        <button type="button" class="btn btn-secondary">Remove</button>-->
         <button type="button" id="BtnUpdate" class="btn btn-success">Update</button>
         <button type="button" id="BtnDelete" class="btn btn-danger">Delete</button>
         <button type="button" id="BtnClearAll" class="btn btn-warning">Clearall</button>
@@ -163,13 +174,13 @@
                class="col table table-bordered border-primary table-dark table-striped">
             <thead class="bg-danger text-white">
             <tr>
-                <th >Id</th>
-                <th >Name</th>
+                <th>Id</th>
+                <th>Name</th>
                 <th>Address</th>
-                <th >Email</th>
-                <th >Contact</th>
-                <th >Password</th>
-                <th >Nic</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Nic</th>
+                <th>Password</th>
 
             </tr>
             </thead>
@@ -193,7 +204,7 @@
 
     });
 
-    let baseURL = "http://127.0.0.1:8000/api/createCustomer/";
+    let baseURL = "http://127.0.0.1:8000/api/createCustomer";
 
     getAll();
 
@@ -202,7 +213,7 @@
         var formData = $("#customerForm").serialize();
         console.log(formData);
         $.ajax({
-            url: baseURL + "Customer/",
+            url: baseURL + "/Customer/",
             method: "post",
             data: formData,
             dataType: "json",
@@ -221,42 +232,42 @@
         getAll()
     });
 
-
-
     //update value
     $("#BtnUpdate").click(function () {
 
-
+        let customerID = $("#txtCustomerID").val();
         let customerName = $("#txtCustomerName").val();
         let customerAddress = $("#txtCustomerAddress").val();
         let customerEmail = $("#txtCustomerEmail").val();
         let customerContact = $("#txtCustomerCon").val();
-        let customerPassword = $("#txtCustomerPassword").val();
         let customerNic = $("#txtCustomerNic").val();
+        let customerPassword = $("#txtCustomerPassword").val();
 
 
         var customer = {
-
+            id : customerID,
             name: customerName,
             address: customerAddress,
-            email : customerEmail,
-            conNo:customerContact,
-            password:customerPassword,
-            nic:customerNic
+            email: customerEmail,
+            conNo: customerContact,
+            nic: customerNic,
+            password: customerPassword
+
         }
 
         $.ajax({
-            url: baseURL+4,
+
+            url: baseURL + "/"+$("#txtCustomerID").val(),
             method: 'put',
-            contentType:"application/json",
-            data:JSON.stringify(customer),
-            dataType:"json",
+            contentType: "application/json",
+            data: JSON.stringify(customer),
+            dataType: "json",
             success: function (res) {
                 alert(res.message);
-
+                getAll()
             },
-            error:function (error){
-                let cause= JSON.parse(error.responseText).message;
+            error: function (error) {
+                let cause = JSON.parse(error.responseText).message;
                 alert(cause);
             }
 
@@ -268,36 +279,44 @@
 
         let id = $("#txtCustomerID").val();
         $.ajax({
-            url: baseURL+"Customer?id=" + id + "",
+            url: baseURL +"/"+id +"/",
             method: "delete",
-            dataType:"json",
-            success: function (resp) {
-                alert(resp.message);
+            dataType: "json",
+            success: function (respond) {
+                alert(respond.message);
                 getAll();
             },
-            error:function (error){
+            error: function (error) {
                 alert(JSON.parse(error.responseText).message);
             }
-        });
-    });
 
+        });
+        getAll()
+    });
 
     function getAll() {
         $("#tblCustomer").empty();
 
         $.ajax({
-            url: baseURL +"Customer",
+            url: baseURL,
             dataType: "json",
-            success: function (resp) {
-                for (let cus of resp.data) {
-                    var row = '<tr><td>' + cus.id + '</td><td>' + cus.name + '</td><td>' + cus.address + '</td><td>' + cus.email + '</td><td>' + cus.conno + '</td><td>' + cus.nic + '</td><td>' + cus.password + '</td></tr>';
-                    $("#tblCustomer").append(row);
+            success: function (response) {
+                for (let cus of (response)) {
+                    console.log(cus.id)
+                    console.log(cus.name)
+                    console.log(cus.email)
+                    console.log(cus.address)
+
+                    var row = '<tr><td>' + cus.id + '</td><td>' + cus.name + '</td><td>' + cus.address + '</td><td>' + cus.email + '</td><td>' + cus.conNo + '</td><td>' + cus.nic + '</td><td>' + cus.password + '</td></tr>';
+                    $("#tblCustomer").append(row)
+                    console.log(row)
                 }
                 EventBindingvalue();
-                setTextFieldValues("", "", "", "", "", "", "");
                 $("#txtCustomerID").focus();
             }
         });
+
+
     }
 
 

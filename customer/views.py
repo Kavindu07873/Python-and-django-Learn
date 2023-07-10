@@ -85,6 +85,7 @@ def coading(request,pk):
     serve = Service.objects.get(id=pk)
     serve_message =serve.message_set.all().order_by('-create')
     participant = serve.participants.all()
+    print(participant)
     if request.method == 'POST':
         message = Message.objects.create(
             user = request.user,

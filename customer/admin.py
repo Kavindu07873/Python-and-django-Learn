@@ -23,6 +23,7 @@ class CustomerValuesAdmin(admin.ModelAdmin):
 admin.site.register(Service,ServiceAdmin)
 
 admin.site.register(Topic)
+# admin.site.register(CarDetails)
 
 
 admin.site.register(CustomerValues,CustomerValuesAdmin)

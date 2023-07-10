@@ -10,3 +10,8 @@ class CustomerSerializer(ModelSerializer):
         model = CustomerValues
         fields = '__all__'
 
+# class CarSerializer(ModelSerializer):
+#     class Meta:
+#         model = CarDetails
+#         fields = '__all__'
+#

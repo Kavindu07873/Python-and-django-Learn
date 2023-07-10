@@ -1,10 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body style="width: 1450px">
+<header>
+    <!--  //logo-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!--      <a class="navbar-brand" href="#">-->
+            <!--        <img src="../Assets/dKP.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">-->
+            <!--        Dkp-Product  </a>-->
+        </div>
+        <!--/links-->
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
 
-{% extends 'main.html' %}
-{% block content %}
-    <h1>Hello Customer World </h1>
-        <h2>Customer html</h2>
-{% endblock %}
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <!--          <a href="../DashBord.html" class="nav-link active" aria-current="page" href="#">Home</a>-->
+                    <a class="nav-link active" aria-current="page" href="#">Orders</a>
+                    <a class="nav-link active" aria-current="page" href="#">Items</a>
+                    <a class="nav-link active" aria-current="page" href="#">Customers</a>
+
+                </div>
+            </div>
+            <!--  Search-->
+        </div>
+
+        <div class="container-fluid">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+
 <main>
     <div class="container overflow-hidden text-center"  style="z-index: 6;position: absolute">
         <div class="row gx-5" style="z-index: 4">
@@ -54,12 +96,7 @@
 <!--                           name="cId"-->
 <!--                           aria-label="cId" required>-->
 <!--                </div>-->
-                <div class="col">
-                    <label for="txtUser">Car_Id</label>
-                    <input type="text" class="form-control is-invalid" id="txtUser" placeholder=""
-                           name="carId"
-                           aria-label="carId" required>
-                </div>
+
 
                 <div class="col">
                     <label for="txtVersion">Version</label>
@@ -153,4 +190,286 @@
     </section>
     <br>
     <br>
+    <section>
+        <table style="width: 95%" border="2px solid red"
+               class="col table table-bordered border-primary table-dark table-striped">
+            <thead class="bg-danger text-white">
+            <tr>
+                <th>Car_Id</th>
+                <th>Car_Brand</th>
+                <th>Car_type</th>
+                <th>Fuel_type</th>
+                <th>Passengers</th>
+                <th>Transmission</th>
+                <th>Colour</th>
+                <th>Rent_duration</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Price_ExtraKm</th>
+            </tr>
+            </thead>
+            <tbody id="tblCar">
+
+            </tbody>
+        </table>
+
+    </section>
 </main>
+
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery-3.6.1.min.js"></script>
+<script>
+    // $("#BtnClearAll").click(function () {
+    //     setTextFieldValues();
+    //
+    // });
+
+    let baseURL = "http://127.0.0.1:8000/api/createCar/";
+    // http://localhost:8080/Back_End_war/
+    getAll();
+
+    $("#SaveCar").click(function () {
+
+        let formData3 = $("#CarForm").serialize();
+        // console.log(formData2);
+        $.ajax({
+            url: baseURL + "Car/",
+            method: "post",
+            data: formData3,
+            dataType: "json",
+            success: function (response) {
+                // console.log(res);
+                alert(response.message);
+                getAll();
+            },
+            error: function (error) {
+                console.log("Error Method Invoked");
+                // console.log(error.message);
+                // alert(error.message)
+                var jsObject = JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
+    });
+
+    $("#btnLoadAll").click(function () {
+        getAll()
+    });
+
+
+    //update value
+    $("#BtnUpdate").click(function () {
+        let car =$("#txtUser").val();
+        let Version =$("#txtVersion").val();
+        let Type =$("#txtType").val();
+        let Fuel =$("#txtFuel").val();
+        let Passengers =$("#txtPassengers").val();
+        let Transmission =$("#txtTransmission").val();
+        let Colour =$("#txtColour").val();
+        let Amount =$("#txtAmount").val();
+        let Rent_duration =$("#txtRent_duration").val();
+        let Price =$("#txtPrice").val();
+        let Price_ExaraKm =$("#txtPrice_ExtraKm").val();
+
+
+        console.log(car)
+
+        var cars = {
+            carId: car,
+            version: Version,
+            type: Type,
+            fuel: Fuel,
+            transmission: Transmission,
+            passengers: Passengers,
+            colour: Colour,
+            amount :Amount,
+            rent_duration: Rent_duration,
+            price: Price,
+            price_ExtraKm: Price_ExaraKm,
+
+
+        }
+        console.log(cars)
+
+        $.ajax({
+            url: baseURL + 'Car',
+            method: 'put',
+            contentType: "application/json",
+            data: JSON.stringify(cars),
+            dataType: "json",
+            success: function (res) {
+                alert(res.message);
+                getAll();
+            },
+            error: function (error) {
+                let cause = JSON.parse(error.responseText).message;
+                alert(cause);
+            }
+
+        });
+    });
+    //
+    //Delete Value
+    $("#BtnDelete").click(function () {
+
+        let id = $("#txtUser").val();
+        $.ajax({
+            url: baseURL + "Car?id=" + id + "",
+            method: "delete",
+            dataType: "json",
+            success: function (resp) {
+                alert(resp.message);
+                getAll();
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
+
+    function getAll() {
+        $("#tblCar").empty();
+
+        $.ajax({
+            url: baseURL + "Car/",
+            dataType: "json",
+            success: function (response) {
+                for (let car of response.data) {
+
+                    var row = '<tr>' +
+                        '<td>' + car.carId+ '</td>' +
+                        '<td>' + car.version  + '</td>' +
+                        '<td>' + car.type + '</td>' +
+                        '<td>' + car.fuel + '</td>' +
+                        '<td>' + car.passengers + '</td>' +
+                        '<td>' + car.transmission + '</td><td>' +
+                        car.colour+ '</td><td>' +
+                        car.rent_duration + '</td><td>' +
+                        car.amount + '</td><td>' +
+                        car.price + '</td><td>' +
+                        car.price_ExtraKm +'</td></tr>';
+
+                    console.log(row);
+                    $("#tblCar").append(row);
+                }
+                console.log("Add " + row);
+                EventBindingvalue();
+                setTextFieldValues("", "", "", "", "", "", "","", "", "","");
+                $("#txtUser").focus();
+            }
+
+        });
+    }
+
+
+    function setTextFieldValues(carId,Version,Type,Fuel,Passengers,Transmission,Colour,Rent_duration,Amount,Price,Price_ExtraKm) {
+        $("#txtUser").val(carId);
+        $("#txtVersion").val(Version);
+        $("#txtType").val(Type);
+        $("#txtFuel").val(Fuel);
+        $("#txtPassengers").val(Passengers);
+        $("#txtTransmission").val(Transmission);
+        $("#txtColour").val(Colour);
+        $("#txtRent_duration").val(Rent_duration);
+        $("#txtAmount").val(Amount);
+        $("#txtPrice").val(Price);
+        $("#txtPrice_ExtraKm").val(Price_ExtraKm);
+
+    }
+
+    //  mehidi table eka click karama data print we
+    function EventBindingvalue() {
+        $("#tblCar>tr").click(function () {
+
+            let carId = $(this).children(":eq(0)").text();
+            let Version = $(this).children(":eq(1)").text();
+            let Type = $(this).children(":eq(2)").text();
+            let Fuel = $(this).children(":eq(3)").text();
+            let Passengers = $(this).children(":eq(4)").text();
+            let Transmission = $(this).children(":eq(5)").text();
+            let Colour = $(this).children(":eq(6)").text();
+            let Rent_duration = $(this).children(":eq(7)").text();
+            let Amount = $(this).children(":eq(8)").text();
+            let Price = $(this).children(":eq(9)").text();
+            let Price_ExtraKm = $(this).children(":eq(10)").text();
+
+
+            //  tble eke textfild walata data add karanawa
+            $("#txtUser").val(carId);
+            $("#txtVersion").val(Version);
+            $("#txtType").val(Type);
+            $("#txtFuel").val(Fuel);
+            $("#txtPassengers").val(Passengers);
+            $("#txtTransmission").val(Transmission);
+            $("#txtColour").val(Colour);
+            $("#txtRent_duration").val(Rent_duration);
+            $("#txtAmount").val(Amount);
+
+            $("#txtPrice").val(Price);
+            $("#txtPrice_ExtraKm").val(Price_ExtraKm);
+        });
+
+        // //double click remove table colom
+        // $("#tblCustomer>tr").on('dblclick', function () {
+        //     $(this).remove();
+        // });
+
+    }
+
+    // //Enter Button use for textfield
+    // $("#txtCustomerID").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         $("#txtCustomerName").focus();
+    //     }
+    //
+    // });
+    //
+    // $("#txtCustomerName").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         $("#txtCustomerContNo").focus();
+    //     }
+    //
+    // });
+    //
+    // $("#txtCustomerContNo").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         $("#txtCustomerAddress").focus();
+    //     }
+    //
+    // });
+
+    // $("#txtCustomerAddress").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         $("#txtCustomerSalary").focus();
+    //     }
+    //
+    // });
+    //
+    // $("#txtCustomerSalary").on('keydown', function (event) {
+    //
+    //     if (event.key == "Enter") {
+    //         confirm("Do You Want To Add This Customer...?")
+    //         $("#SaveCustomer").focus();
+    //     }
+    //
+    // });
+
+    // Tap Button Remove
+    // $("#txtCustomerID,#txtCustomerName,#txtCustomerCon,#txtCustomerAddress,#txtCustomerSalary").on('keydown', function (event) {
+    //
+    //     if (event.key == "Tab") {
+    //         event.preventDefault();
+    //     }
+    // });
+
+
+</script>
+
+
+</body>
+</html>

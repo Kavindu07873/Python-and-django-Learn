@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+</head>
+<body class="text-bg-secondary p-2">
+<header>
+    <!--  //logo-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                Dkp-Product </a>
+        </div>
+
+        <!--/links-->
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <!--          <a href="../DashBord.html" class="nav-link active" aria-current="page" href="#">Home</a>-->
+                    <!--          <a href="Orders.html" class="nav-link ac/tive" aria-current="page" href="#">Orders</a>-->
+                    <!--          <a href="Item.html" class="nav-link active" aria-current="page" href="#">Items</a>-->
+                    <!--          <a href="Customer.html" class="nav-link active" aria-current="page" href="#">Customers</a>-->
+
+                </div>
+            </div>
+            <!--  Search-->
+        </div>
+
+        <div class="container-fluid">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <section>
+        <h1 class="bg-success p-2 text-white bg-opacity-75">Rent Details</h1>
+    </section>
+
+    <section>
+        <form id="OrderForm">
+            <div class="container-fluid text-start ">
+                <div class="row ">
+
+                    <div style="border: 2px solid red" class="col ">
+
+                        <div class="row">
+                            <h1 class="bg-success p-2 text-black bg-opacity-75">Customer Details</h1>
+                            <div class="d-flex justify-content-around">
+
+                                <div class="mb-3">
+                                    <label for="OrderId" class="form-label text-black">OrderID</label>
+                                    <input type="text" class="form-control" name="orderId" aria-label="oid" id="OrderId"
+                                           placeholder="D001">
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="scheduleId" class="form-label text-black">SheduleId</label>
+                                    <input type="text" class="form-control" name="scheduleId" aria-label="scheduleId"
+                                           id="scheduleId" placeholder="D001">
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="Date" class="form-label text-black">Date</label>
+                                    <input type="date" class="form-control" id="Date" name="date" aria-label="date">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-evenly">
+
+                                <div class="mb-3">
+                                    <div class="form-group">
+                                        <label>Customer :</label>
+                                        <select class="form-control" id="selectCusID">
+                                        </select>
+                                        <span class="control-error"
+                                              id="cus-empty-error"></span>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="CusId" class="form-label text-black">Cus Id</label>
+                                    <input type="text" class="form-control" id="CusId" name="cusId" aria-label="cusID">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="CusName" class="form-label text-black">CustomerName</label>
+                                    <input type="text" class="form-control" id="CusName" placeholder="amara">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="CusAddress" class="form-label text-black">CustomerAddress</label>
+                                    <input type="text" class="form-control" id="CusAddress" placeholder="Galle">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-evenly">
+
+                                <div class="mb-3">
+                                    <label for="CusEmail" class="form-label text-black">CustomerEmail</label>
+                                    <input type="text" class="form-control" id="CusEmail" placeholder="@gmail.com">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="ContNo" class="form-label text-black">ContNo</label>
+                                    <input type="number" class="form-control" id="ContNo" placeholder="+9477153032">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="CusNic" class="form-label text-black">Nic</label>
+                                    <input type="text" class="form-control" id="CusNic" placeholder="2..0v">
+                                </div>
+                                <!--                            <div class="mb-3">-->
+                                <!--                                <label for="ItemCode2" class="form-label text-black col-form-label-lg">ItemCode</label>-->
+                                <!--                                <select class="form-label" id="ItemCode2" aria-label="Default select example">-->
+                                <!--                                    <option value="1">I001</option>-->
+                                <!--                                    <option value="2">I002</option>-->
+                                <!--                                    <option value="3">I003</option>-->
+                                <!--                                </select>-->
+                                <!--                            </div>-->
+                            </div>
+                            <div>
+                                <h1 class="bg-success p-2 text-black bg-opacity-75">Driver Details</h1>
+
+                            </div>
+                            <div class="d-flex justify-content-evenly">
+                                <div class="mb-3">
+                                    <div class="form-group">
+                                        <label>Driver :</label>
+                                        <select class="form-control" id="selectDriID">
+                                        </select>
+                                        <span class="control-error"
+                                              id="Dri-empty-error"></span>
+                                    </div>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Dname" class="form-label text-black">Name</label>
+                                    <input type="text" class="form-control" id="Dname" name="name"
+                                           aria-label="Dname" placeholder="Lal">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="LicNo" class="form-label text-black">LicNo</label>
+                                    <input type="number" class="form-control" id="LicNo" name="licNo"
+                                           placeholder="20211">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-evenly">
+                                <div class="mb-3">
+                                    <label for="Availability" class="form-label text-black">Availability</label>
+                                    <input type="text" class="form-control" id="Availability" name="availability"
+                                           placeholder="20211">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Address" class="form-label text-black">Address</label>
+                                    <input type="text" class="form-control" name="address" id="Address"
+                                           placeholder="20211">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border: 2px solid red" class="col">
+                        <div class="row">
+                            <div>
+                                <h1 class="bg-success p-2 text-black bg-opacity-75">Car Details</h1>
+
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="VehicleId" class="form-label text-black">Vehicle_Type_Id</label>
+                                <input type="text" class="form-control" name="vehicle" aria-label="Vehicle"
+                                       id="VehicleId" placeholder="General">
+                            </div>
+                            <div class="d-flex justify-content-evenly">
+                                <div class="mb-3">
+                                    <div class="form-group">
+                                        <label>Type :</label>
+                                        <select class="form-control" id="selectCarType">
+                                        </select>
+                                        <span class="control-error"
+                                              id="Cars-empty-error"></span>
+                                    </div>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="selecType" class="form-label text-black">Car Type</label>
+                                    <input type="text" class="form-control" id="selecType" placeholder="General">
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group">
+                                        <label>Car :</label>
+                                        <select class="form-control" id="selectCarID">
+                                        </select>
+                                        <span class="control-error"
+                                              id="Car-empty-error"></span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="Version" class="form-label text-black">Car Version</label>
+                                    <input type="text" class="form-control" id="Version" placeholder="BMW">
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="d-flex justify-content-evenly">
+
+                                <div class="mb-3">
+                                    <label for="Fuel" class="form-label text-black">Car Fuel</label>
+                                    <input type="text" class="form-control" id="Fuel" placeholder="Petral">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="Passengers" class="form-label text-black">Passengers</label>
+                                    <input type="text" class="form-control" id="Passengers" placeholder="5">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="Transmission" class="form-label text-black">Transmission</label>
+                                    <input type="text" class="form-control" id="Transmission" placeholder="Auto">
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="d-flex justify-content-evenly">
+
+                                <div class="mb-3">
+                                    <label for="Colour" class="form-label text-black">Colour</label>
+                                    <input type="text" class="form-control" id="Colour" placeholder="Black">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="Rent_duration" class="form-label text-black">Rent_duration</label>
+                                    <input type="text" class="form-control" id="Rent_duration" placeholder="Daily">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="Price_ExtraKm" class="form-label text-black">Price_ExtraKm</label>
+                                    <input type="number" class="form-control" id="Price_ExtraKm" placeholder="200">
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="d-flex justify-content-evenly">
+                                <div class=" mb-3">
+                                    <label for="NoOfCar" class="form-label text-black">No Of Car</label>
+                                    <input type="number" class="form-control" id="NoOfCar">
+                                </div>
+                                <br>
+
+
+                                <div class=" mb-3">
+                                    <label for="Price" class="form-label text-black">Price per car</label>
+                                    <input type="number" class="form-control" id="Price">
+                                </div>
+
+                                <div class=" mb-3">
+                                    <label for="need" class="form-label text-black">Need Cars</label>
+                                    <input type="number" class="form-control"
+                                           name="need"
+                                           aria-label="Need" id="Need">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-evenly">
+
+                                <div class=" mb-3">
+                                    <label for="Total" class="form-label text-black">TOTAL</label>
+                                    <input type="number" class="form-control" name="total"
+                                           aria-label="Total" id="Total">
+                                </div>
+                                <br>
+                                <div class="text-end">
+                                    <button id="btnAddToTable" type="button" class="btn btn-danger  btn-lg">Add Item
+                                    </button>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+
+                        </div>
+                        <br>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </form>
+    </section>
+    <br>
+    <section>
+        <table style="width: 100%" border="2px solid red"
+               class="col table table-bordered border-primary table-dark  table-striped">
+            <thead>
+            <tr class="table-dark table-striped">
+                <th scope="col">Order</th>
+                <!--                <th scope="col">Date</th>-->
+                <!--                <th scope="col">CusID</th>-->
+                <!--                <th scope="col">ContNo</th>-->
+                <th scope="col">DriID</th>
+                <th scope="col">CarType</th>
+                <th scope="col">CarID</th>
+                <th scope="col">Version</th>
+                <th scope="col">Need Cars</th>
+                <th scope="col">Total</th>
+
+
+            </tr>
+            </thead>
+            <tbody id="orderTable2">
+
+            </tbody>
+
+        </table>
+
+        <div class="text-end">
+            <button type="button" id="PlaceOrder" class="btn btn-success  btn-lg">Rent Car</button>
+
+        </div>
+
+    </section>
+    <br>
+
+</main>
+
+<script src="assets/js/jquery-3.6.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script>
+
+    let baseURL = "http://127.0.0.1:8000/api/createCustomer";
+    getAllCustomer();
+
+
+    // Autogenaraeorderid();
+
+    function getAllCustomer() {
+        $("#selectCusID").empty();
+        $.ajax({
+            url: baseURL,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                for (let cus of response) {
+                    console.log(cus.id)
+                    $("#selectCusID").append(`<option value="${cus.id}">${cus.id}</option>`);
+                }
+            }
+        });
+    }
+    function searchCustomer(cusID) {
+        let response = "";
+        $.ajax({
+            url: baseURL,
+            dataType: "json",
+            async: false,
+            success: function (respond) {
+                response = respond.filter((c) => {
+                    return c.id == cusID;
+                });
+            }
+        });
+        console.log(response);
+        return response;
+    }
+    $("#selectCusID").change(function () {
+        let cusID = $("#selectCusID").val();
+        $("#orderCustomerID").val(cusID);
+        let respond = searchCustomer(cusID);
+        if (respond.length > 0) {
+            $("#CusId").val(respond[0].id);
+            $("#CusName").val(respond[0].name);
+            $("#CusAddress").val(respond[0].address);
+            $("#CusEmail").val(respond[0].email);
+            $("#ContNo").val(respond[0].conNo);
+            $("#CusNic").val(respond[0].nic);
+
+        }
+
+    });
+
+
+
+
+
+</script>
+</body>
+</html>
